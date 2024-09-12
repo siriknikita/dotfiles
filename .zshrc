@@ -38,7 +38,7 @@ source $HOME/.aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/emodipt-extend.omp.json)"
-eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.toml)"
+eval "$(oh-my-posh init zsh --config ~/ohmyposh/.config/ohmyposh/zen.toml)"
 eval "$(zoxide init zsh)"
 # eval "$(fzf --zsh)"
 
