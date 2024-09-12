@@ -1,0 +1,2 @@
+alias murder-node-js='pkill node'
+alias edit-aliases='nvim ~/.aliases'
