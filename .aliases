@@ -1,2 +1,3 @@
 alias murder-node-js='pkill node'
 alias edit-aliases='nvim ~/.aliases'
+alias fzf='nvim $(fzf --preview="cat {}")'
