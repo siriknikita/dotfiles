@@ -51,7 +51,12 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append '@-@'
 
+vim.opt.colorcolumn = '79'
+
 vim.keymap.set('n', 'x', '_X', { desc = 'Delete character without saving it to the clipboard' })
+
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected lines down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selected lines up' })
 
 -- Save file and quit
 vim.keymap.set('n', '<leader>w', '<cmd>update<CR>', { desc = '[W]rite changes to file' })
