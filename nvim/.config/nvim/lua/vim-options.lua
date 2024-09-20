@@ -51,6 +51,12 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append '@-@'
 
+vim.keymap.set('n', 'x', '_X', { desc = 'Delete character without saving it to the clipboard' })
+
+-- Save file and quit
+vim.keymap.set('n', '<leader>w', '<cmd>update<CR>', { desc = '[W]rite changes to file' })
+vim.keymap.set('n', '<leader>q', '<cmd>quit<CR>', { desc = '[Q]uit' })
+
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open [P]ackage [V]iew' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
