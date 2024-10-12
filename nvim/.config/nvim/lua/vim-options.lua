@@ -22,6 +22,8 @@ end)
 
 vim.opt.breakindent = true
 
+vim.opt.guicursor = ''
+
 vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
 vim.opt.undofile = true
 
@@ -55,6 +57,11 @@ vim.opt.colorcolumn = '79'
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected lines down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selected lines up' })
+
+vim.keymap.set('n', '<c-h>', ':wincmd h<CR>', { desc = 'Move to the window on the left' })
+vim.keymap.set('n', '<c-j>', ':wincmd j<CR>', { desc = 'Move to the window below' })
+vim.keymap.set('n', '<c-k>', ':wincmd k<CR>', { desc = 'Move to the window above' })
+vim.keymap.set('n', '<c-l>', ':wincmd l<CR>', { desc = 'Move to the window on the right' })
 
 -- Save file and quit
 vim.keymap.set('n', '<leader>w', '<cmd>update<CR>', { desc = '[W]rite changes to file' })

@@ -58,7 +58,7 @@ args = ["-c", "source ~/.zshrc && exec zsh"]
 program = "/usr/bin/zsh"
 
 [window]
-opacity = 0.93
+opacity = 0.95
 startup_mode = "Maximized"
 
 [window.class]
