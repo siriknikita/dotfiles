@@ -189,6 +189,11 @@ return {
           },
         },
       },
+      eslint = {
+        settings = {
+          workingDirectory = { mode = 'auto '}
+        }
+      },
     }
 
     -- Ensure the servers and tools above are installed
