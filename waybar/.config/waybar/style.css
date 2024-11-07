@@ -18,8 +18,8 @@ window#waybar {
 
 #window {
     margin: 8px;
-    padding-left: 8;
-    padding-right: 8;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 button {
@@ -65,6 +65,7 @@ button:hover {
 #wireplumber,
 #tray,
 #network,
+#language,
 #mode,
 #scratchpad {
   margin-top: 2px;
@@ -124,4 +125,12 @@ button:hover {
     border-radius: 15px;
     padding-left: 6px;
     padding-right: 6px;
+}
+
+#language {
+    color: @green;
+    border-bottom: 2px solid @green;
+    /*margin-bottom: 2px;*/
+    /*margin-right: 0;*/
+    /*margin-left: 4px;*/
 }
