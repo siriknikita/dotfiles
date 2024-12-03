@@ -1,3 +1,4 @@
 alias murder-node-js='pkill node'
 alias edit-aliases='nvim ~/.aliases'
 alias fzff='nvim $(fzf --preview="cat {}")'
+alias todo='nvim ~/Documents/Obsidian\ Vault/Personal/TODO.md'
