@@ -63,6 +63,9 @@ vim.keymap.set('n', '<c-j>', ':wincmd j<CR>', { desc = 'Move to the window below
 vim.keymap.set('n', '<c-k>', ':wincmd k<CR>', { desc = 'Move to the window above' })
 vim.keymap.set('n', '<c-l>', ':wincmd l<CR>', { desc = 'Move to the window on the right' })
 
+vim.keymap.set('n', '<M-j>', '<cmd>cnext<CR>', { desc = 'Move to the next quickfix item' })
+vim.keymap.set('n', '<M-k>', '<cmd>cprev<CR>', { desc = 'Move to the previous quickfix item' })
+
 -- Save file and quit
 vim.keymap.set('n', '<leader>w', '<cmd>update<CR>', { desc = '[W]rite changes to file' })
 vim.keymap.set('n', '<leader>q', '<cmd>quit<CR>', { desc = '[Q]uit' })
