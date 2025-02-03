@@ -1,61 +1,84 @@
+# Set the location of Oh My Zsh installation
 export ZSH=$HOME/.oh-my-zsh
+
+# Add local bin to PATH
 export PATH=$HOME/.local/bin:$PATH
 
+# Set the Zsh theme
 ZSH_THEME="robbyrussell"
 
-#
-# Allow parent to initialize shell
-#
-# This is awesome for opening terminals in VSCode.
-#
+# Enable command auto-correction
+ENABLE_CORRECTION="true"
+
+# Enable command auto-completion
+
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Execute a custom initialization command if defined
 if [[ -n $ZSH_INIT_COMMAND ]]; then
   echo "Executing ZSH_INIT_COMMAND: $ZSH_INIT_COMMAND"
   eval "$ZSH_INIT_COMMAND"
 fi
 
-# Disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
+# Define and load plugins
 plugins=(
-	git
-	zsh-autosuggestions
-  # zsh-syntax-highlighting
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
-# PATH variable
-
+# Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh
+
+# Source custom aliases
 source $HOME/.aliases
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Define the variable to hold the path to the configuration file
+export OMP_CONFIG="zen"
 
-# eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/emodipt-extend.omp.json)"
-eval "$(oh-my-posh init zsh --config ~/ohmyposh/.config/ohmyposh/zen.toml)"
-eval "$(zoxide init zsh)"
-# eval "$(fzf --zsh)"
+# Use a case statement to switch between different configurations
+case $OMP_CONFIG in
+  "zen")
+    CONFIG_PATH="$HOME/ohmyposh/.config/ohmyposh/zen.toml"
+    ;;
+  "emodipt")
+    CONFIG_PATH="$HOME/.cache/oh-my-posh/themes/emodipt-extend.omp.json"
+    ;;
+  *)
+    echo "Unknown configuration: $OMP_CONFIG"
+    return 1
+    ;;
+esac
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Functions to initialize all tools
+initialize_cli_tools() {
+  eval "$(oh-my-posh init zsh --config $CONFIG_PATH)"
+  eval "$(zoxide init zsh)"
+  eval "$(tmuxifier init -)"
+  eval "$(fzf --zsh)"
+
+  # Update PATH for the Google Cloud SDK
+  if [ -f "$HOME/Apps/google-cloud-sdk/path.zsh.inc" ]; then
+    . "$HOME/Apps/google-cloud-sdk/path.zsh.inc"
+  fi
+
+  # Enable shell command completion for gcloud
+  if [ -f "$HOME/Apps/google-cloud-sdk/completion.zsh.inc" ]; then
+    . "$HOME/Apps/google-cloud-sdk/completion.zsh.inc"
+  fi
+
+  # Load NVM (Node Version Manager) tool
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+}
+
+# Call the function to initialize CLI tools
+initialize_cli_tools
+
+# Add custom paths to PATH
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
+export PATH="$HOME/Automation/Scripts:$PATH"
 
-eval "$(tmuxifier init -)"
-
-# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/mykyta/Apps/google-cloud-sdk/path.zsh.inc' ]; then . '/home/mykyta/Apps/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/mykyta/Apps/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/mykyta/Apps/google-cloud-sdk/completion.zsh.inc'; fi
