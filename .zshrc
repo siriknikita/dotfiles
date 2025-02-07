@@ -33,6 +33,20 @@ source $ZSH/oh-my-zsh.sh
 # Source custom aliases
 source $HOME/.aliases
 
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+
+function nvims() {
+  items=("default" "LazyVim" "NvChad")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
 # Define the variable to hold the path to the configuration file
 export OMP_CONFIG="zen"
 
@@ -54,7 +68,7 @@ esac
 initialize_cli_tools() {
   eval "$(oh-my-posh init zsh --config $CONFIG_PATH)"
   eval "$(zoxide init zsh)"
-  eval "$(tmuxifier init -)"
+  # eval "$(tmuxifier init -)"
   eval "$(fzf --zsh)"
 
   # Update PATH for the Google Cloud SDK
