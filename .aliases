@@ -9,3 +9,9 @@ alias fzff='nvim-lazy $(fzf --preview="cat {}")'
 
 # Open the TODO.md file in Obsidian Vault
 alias todo='nvim-lazy ~/Documents/Obsidian\ Vault/Personal/TODO.md'
+
+# Edit the lazygit config
+alias edit-lazygit='nvim-lazy ~/.config/lazygit/config.yml'
+
+# Use simple 'n' instead of long nvim-lazy command
+alias n='nvim-lazy'

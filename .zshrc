@@ -36,15 +36,70 @@ source $HOME/.aliases
 alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 
 function nvims() {
-  items=("default" "LazyVim" "NvChad")
+  items=("neovim" "LazyVim")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
   if [[ -z $config ]]; then
     echo "Nothing selected"
     return 0
-  elif [[ $config == "default" ]]; then
+  elif [[ $config == "neovim" ]]; then
     config=""
   fi
   NVIM_APPNAME=$config nvim $@
+}
+
+function edit_nvim_configs() {
+  nvim_configs=("Default" "LazyVim")
+  nvim_config=$(printf "%s\n" "${nvim_configs[@]}" | fzf --prompt=" Edit Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+
+  if [[ -z $nvim_config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $nvim_config == "Default" ]]; then
+    nvim-lazy $HOME/.config/nvim
+  elif [[ $nvim_config == "LazyVim" ]]; then
+    nvim-lazy $HOME/.config/LazyVim
+  fi
+}
+
+function edit_configurations() {
+  items=("NeoVim" "LazyGit" "TMUX")
+  item=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Edit Configuration " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $item ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $item == "NeoVim" ]]; then
+    edit_nvim_configs
+  elif [[ $item == "LazyGit" ]]; then
+    nvim-lazy $HOME/.config/lazygit/config.yml
+  elif [[ $item == "TMUX" ]]; then
+    nvim-lazy $HOME/.tmux.conf
+  fi
+}
+
+# Suggest editing any of these items
+function edit() {
+  items=("zshrc" "Aliases" "Configruation")
+  item=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Edit " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $item ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $item == "zshrc" ]]; then
+    nvim-lazy $HOME/.zshrc
+  elif [[ $item == "Aliases" ]]; then
+    nvim-lazy $HOME/.aliases
+  elif [[ $item == "Configruation" ]]; then
+    edit_configurations
+  fi
+}
+
+# Gets all the aliases from the ~/.aliases, and then suggests to use them
+function use() {
+  alias=$(cat $HOME/.aliases | grep -E "^alias" | sed -E 's/alias //g' | fzf --prompt=" Use Alias " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $alias ]]; then
+    echo "Nothing selected"
+    return 0
+  fi
+  eval $alias
 }
 
 # Define the variable to hold the path to the configuration file
