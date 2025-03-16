@@ -108,7 +108,7 @@ export OMP_CONFIG="zen"
 # Use a case statement to switch between different configurations
 case $OMP_CONFIG in
   "zen")
-    CONFIG_PATH="$HOME/ohmyposh/.config/ohmyposh/zen.toml"
+    CONFIG_PATH="$HOME/.config/ohmyposh/zen.toml"
     ;;
   "emodipt")
     CONFIG_PATH="$HOME/.cache/oh-my-posh/themes/emodipt-extend.omp.json"
