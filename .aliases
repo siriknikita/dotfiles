@@ -15,3 +15,5 @@ alias edit-lazygit='nvim-lazy ~/.config/lazygit/config.yml'
 
 # Use simple 'n' instead of long nvim-lazy command
 alias n='nvim-lazy'
+
+alias lg='lazygit'
