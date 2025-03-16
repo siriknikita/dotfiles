@@ -1,0 +1,145 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+final_space = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'time'
+    style = 'plain'
+    template = '[{{ .CurrentDate | date .Format }}]'
+    background = ''
+    foreground = '#E5C07B'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+    [blocks.segments.properties]
+      time_format = '15:04'
+
+  [[blocks.segments]]
+    type = 'shell'
+    style = 'plain'
+    template = '  {{ .Name }}'
+    background = ''
+    foreground = '#E06C75'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+    [blocks.segments.properties]
+      [blocks.segments.properties.mapped_shell_names]
+        bash = 'Bash'
+        cmd = 'Cmd'
+        powershell = 'Shell'
+        pwsh = 'Shell'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    foreground_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}', '{{ if gt .Ahead 0 }}#B388FF{{ end }}', '{{ if gt .Behind 0 }}#B388FF{{ end }}']
+    template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
+    background = ''
+    foreground = '#F3C267'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+    [blocks.segments.properties]
+      branch_max_length = 25.0
+      fetch_stash_count = true
+      fetch_status = true
+      fetch_upstream_icon = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    type = 'status'
+    style = 'plain'
+    foreground_templates = ['{{ if gt .Code 0 }}#E06C75{{ end }}']
+    template = ' x{{ reason .Code }}'
+    background = ''
+    foreground = '#b8ff75'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'diamond'
+    foreground_templates = ['{{ if gt .Code 0 }}#E06C75{{ end }}']
+    template = ' {{ .FormattedMs }} '
+    background = ''
+    foreground = '#b8ff75'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+    [blocks.segments.properties]
+      always_enabled = true
+      style = 'roundrock'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    template = ' {{ .Path }}'
+    background = ''
+    foreground = '#61AFEF'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+    [blocks.segments.properties]
+      style = 'full'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'root'
+    style = 'plain'
+    template = '!'
+    background = ''
+    foreground = '#E06C75'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    template = '❯'
+    background = ''
+    foreground = '#E06C75'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+[transient_prompt]
+  template = 'zsh ❯❯ '
+  background = 'transparent'
+  foreground = '#e02c20'
+  Text = ''
+  Duration = 0
+  NameLength = 0
+
+[secondary_prompt]
+  template = '~ '
+  background = 'transparent'
+  foreground = '#ac6ce0'
+  Text = ''
+  Duration = 0
+  NameLength = 0
