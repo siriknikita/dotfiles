@@ -17,3 +17,9 @@ alias edit-lazygit='nvim-lazy ~/.config/lazygit/config.yml'
 alias n='nvim-lazy'
 
 alias lg='lazygit'
+
+# Git commands
+alias gc='git commit'
+alias gf='git fetch'
+alias gfp='git fetch -p'
+

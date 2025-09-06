@@ -1,0 +1,18 @@
+# list of keyboards to operate on
+# use `hyprctl devices -j` to list all keyboards
+keyboards = [
+  "logitech-g815-rgb-mechanical-gaming-keyboard",
+]
+
+# layout_index => window classes list
+# use `hyprctl clients | grep class:` to get class names
+[[default_layouts]]
+0 = [
+  "MongoDB Compass",
+]
+1 = [
+  "org.telegram.desktop",
+]
+2 = [
+  "WebCord",
+]
