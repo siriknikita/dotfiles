@@ -25,6 +25,5 @@ Files excluded from stowing are listed in `.stow-local-ignore` (scripts, package
 
 ## Git Workflow
 
-- Default remote branch: `master`
-- Current local branch: `main`
-- `just commit-push` pushes to `origin master`
+- Default branch: `main`
+- `just commit-push` pushes to `origin main`

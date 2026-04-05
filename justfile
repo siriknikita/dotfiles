@@ -90,7 +90,7 @@ commit-push:
     commit_message=${commit_message%,}
     git add .
     git commit -m "$commit_message"
-    git push origin master
+    git push origin main
 
 # Full Arch Linux install (packages + stow)
 install:
