@@ -24,6 +24,7 @@ _darcs
 
 commit_changes.sh
 install.sh
+justfile
 packages.txt
 pacman_packages.txt
 yay_packages.txt

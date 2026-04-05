@@ -8,10 +8,14 @@ This is a dotfiles repository managed with [GNU Stow](https://www.gnu.org/softwa
 
 ## Key Commands
 
-- **Stow all packages:** `./stow_dotfiles.sh` — loops through all directories and stows them. Packages listed in `HOME_PACKAGES` (zsh, tmux) are stowed to `$HOME`; everything else goes to `~/.config`.
-- **Stow a single package:** `stow <package>` (uses `.stowrc` which sets `--target=$HOME/.config`). For home-directory packages: `stow -t $HOME --no-folding <package>`.
-- **Full Arch Linux setup:** `./install.sh` — installs system packages from `pacman_packages.txt` and `yay_packages.txt`, then stows everything.
-- **Auto-commit & push:** `./commit_changes.sh` — stages all changes, generates a commit message from changed directories/files, and pushes to `origin master`.
+All commands are managed via [`just`](https://github.com/casey/just). Run `just` to see available recipes.
+
+- **Stow all packages:** `just stow-all` — stows all directories. Home packages (zsh, tmux) go to `$HOME`; everything else to `~/.config`.
+- **Stow a single package:** `just stow <package>` or `just stow-home <package>` (for zsh/tmux).
+- **Unstow:** `just unstow <package>` or `just unstow-all`.
+- **Re-stow (cleanup):** `just restow-all`.
+- **Full Arch Linux setup:** `just install` — installs system packages from `pacman_packages.txt` and `yay_packages.txt`, then stows everything.
+- **Auto-commit & push:** `just commit-push` — stages all changes, generates a commit message from changed directories/files, and pushes to `origin master`.
 
 ## Stow Structure
 
@@ -23,4 +27,4 @@ Files excluded from stowing are listed in `.stow-local-ignore` (scripts, package
 
 - Default remote branch: `master`
 - Current local branch: `main`
-- The `commit_changes.sh` script pushes to `origin master`
+- `just commit-push` pushes to `origin master`
